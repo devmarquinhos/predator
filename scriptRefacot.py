@@ -268,9 +268,9 @@ async def noticias(update: Update, context: ContextTypes.DEFAULT_TYPE):
         resposta = "📰 *Últimas notícias do time da FURIA*\n"
         for titulo, link in noticias:
             resposta += f"\n→ [{titulo}]({link})\n"
-        await send_message(update, resposta, reply_markup=back_menu())
+        await send_message(update, resposta, reply_markup=back_menu())  # Added back_menu()
     else:
-        await send_message(update, "🦁 Nenhuma notícia recente da FURIA encontrada.", reply_markup=back_menu())
+        await send_message(update, "🦁 Nenhuma notícia recente da FURIA encontrada.", reply_markup=back_menu()) # Added back_menu()
 
 # ========== Inicialização ==========
 def main():
