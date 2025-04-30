@@ -53,8 +53,8 @@ def build_menu(options: list[list[tuple[str, str]]]):
 def main_menu():
     return build_menu([
         [("Próximos Jogos", "proximos_jogos"), ("Últimos Jogos", "ultimos_jogos")],
-        [("Elenco Atual", "menu_elenco"), ("Notícias", "noticias")], # Added Notícias button
-        [("Ao Vivo", "aovivo")]
+        [("Elenco Atual", "menu_elenco"), ("Notícias", "noticias")],
+        [("Partida ao vivo", "aovivo")]
     ])
 
 def back_menu(callback="menu_principal"):
@@ -156,7 +156,7 @@ async def ultimos_jogos(update: Update, context: ContextTypes.DEFAULT_TYPE):
             logger.error(f"Erro ao processar partida: {e}")
 
     if not jogos:
-        await send_message(update, "🚫 Nenhuma partida recente encontrada.", reply_markup=back_menu()) # Added back_menu()
+        await send_message(update, "🚫 Nenhuma partida recente encontrada.", reply_markup=back_menu())
         return
 
     resposta = "📜 Últimos 5 jogos da FURIA:\n\n"
@@ -169,7 +169,7 @@ async def ultimos_jogos(update: Update, context: ContextTypes.DEFAULT_TYPE):
             f"🏁 Resultado: {jogo['resultado']}\n\n"
         )
 
-    await send_message(update, resposta, reply_markup=back_menu()) # Added back_menu()
+    await send_message(update, resposta, reply_markup=back_menu())
 
 async def menu_elenco(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await send_message(update, "🎮 Qual elenco da FURIA você quer conhecer?", reply_markup=elenco_menu())
@@ -246,16 +246,22 @@ async def noticias(update: Update, context: ContextTypes.DEFAULT_TYPE):
             links = soup.find_all("a", href=True)
 
             noticias = []
+            links_vistos = set()
             for link in links:
-                titulo = link.get_text(strip=True)
-                # Remove "Destaque: " exactly as written
-                if titulo.startswith("Destaque"):
-                    titulo = titulo[len("Destaque"):].strip()
+                titulo_completo = link.get_text(strip=True)
+                if titulo_completo.startswith("Destaque"):
+                    titulo_completo = titulo_completo[len("Destaque"):].strip()
+
+                # Remove "Por Fulano + data", mantendo só o título
+                titulo  = titulo_completo.split("Por")[0].strip()
                 href = link['href']
                 if "FURIA" in titulo.upper() and "/noticia/" in href:
-                    noticias.append((titulo, f"https://draft5.gg{href}" if href.startswith("/") else href))
-                    if len(noticias) == 3:
-                        break
+                    url_final = f"https://draft5.gg{href}" if href.startswith("/") else href
+                    if url_final not in links_vistos:
+                        noticias.append((titulo, url_final))
+                        links_vistos.add(url_final)
+                if len(noticias) >= 5:
+                    break
 
             noticias_cache["data"] = noticias
             noticias_cache["timestamp"] = time.time()
