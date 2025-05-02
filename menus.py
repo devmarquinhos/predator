@@ -11,7 +11,8 @@ def main_menu():
         [("🏟️ - Próximos Jogos", "proximos_jogos"), ("⏮️ - Últimos Jogos", "ultimos_jogos")],
         [("👥 - Elenco Atual", "menu_elenco"), ("📰 - Notícias", "noticias")],
         [("📡 - Partida ao vivo", "aovivo")],
-        [("🛒 - Loja da FURIA", "loja_furia")]
+        [("🛒 - Loja da FURIA", "loja_furia")],
+        [("🎥 - Streamers parceiros", "streamers")]
     ])
 
 def back_menu(callback="menu_principal"):

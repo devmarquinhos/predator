@@ -8,6 +8,7 @@ from handlers.elenco import menu_elenco, mostrar_elenco
 from handlers.noticias import noticias
 from handlers.aovivo import aovivo
 from handlers.loja import loja_furia
+from handlers.streamers import streamers
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -31,6 +32,7 @@ def main():
     app.add_handler(CallbackQueryHandler(noticias, pattern="noticias"))
     app.add_handler(CallbackQueryHandler(aovivo, pattern="aovivo"))
     app.add_handler(CallbackQueryHandler(loja_furia, pattern="loja_furia"))
+    app.add_handler(CallbackQueryHandler(streamers, pattern="streamers"))
 
 
     logger.info("Bot da FURIA está online! 🔥")

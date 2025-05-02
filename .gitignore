@@ -1,2 +1,4 @@
 .env
 script.py
+__pycache__
+handlers\__pycache__
