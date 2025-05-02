@@ -11,6 +11,7 @@ Um bot do Telegram para fãs da FURIA e-sports! Receba informações sobre jogos
 - 📰 Ver as **últimas 5 notícias** da FURIA no portal draft5.gg
 - 📡 Acompanhar **partidas ao vivo**
 - 🛍 Acessar a **loja oficial** da FURIA com um clique
+- 🎥 Checar se os **streamers parceiros** estão ao vivo na Twitch TV
 
 ---
 
@@ -19,7 +20,7 @@ Um bot do Telegram para fãs da FURIA e-sports! Receba informações sobre jogos
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/furia-fan-chat.git
+git clone https://github.com/devmarquinhos/predator.git
 cd furia-fan-chat
 ```
 

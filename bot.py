@@ -2,7 +2,6 @@ import logging
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
 from config import TELEGRAM_TOKEN
 from handlers.jogos import proximos_jogos, ultimos_jogos
-# (importaremos os demais handlers conforme forem modularizados)
 from handlers.start import start
 from handlers.elenco import menu_elenco, mostrar_elenco
 from handlers.noticias import noticias
@@ -33,7 +32,6 @@ def main():
     app.add_handler(CallbackQueryHandler(aovivo, pattern="aovivo"))
     app.add_handler(CallbackQueryHandler(loja_furia, pattern="loja_furia"))
     app.add_handler(CallbackQueryHandler(streamers, pattern="streamers"))
-
 
     logger.info("Bot da FURIA está online! 🔥")
     app.run_polling()
