@@ -70,9 +70,10 @@ def elenco_menu():
 # ========== Comandos ==========
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     texto = (
-        "吼 E aí, torcedor da FURIA!\n"
-        "Prepare o coração para rugir com as novidades do nosso time!\n"
-        "Selecione uma opção abaixo para ficar por dentro de tudo:"
+        "Você acaba de entrar no lado mais selvagem do eSports.\n"
+        "Aqui é onde a informação chega primeiro — jogos, bastidores, time e novidades da FURIA.\n"
+        "Só os verdadeiros têm acesso.\n"
+        "Toque em uma opção e mergulhe no universo FURIA. 🖤💛"
     )
     await send_message(update, texto, reply_markup=main_menu())
 
@@ -232,7 +233,6 @@ async def noticias(update: Update, context: ContextTypes.DEFAULT_TYPE):
     url = "https://draft5.gg/"
     headers = {"User-Agent": "Mozilla/5.0"}
 
-    # Cache por 10 minutos
     if time.time() - noticias_cache["timestamp"] < 600:
         noticias = noticias_cache["data"]
     else:
@@ -252,7 +252,6 @@ async def noticias(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 if titulo_completo.startswith("Destaque"):
                     titulo_completo = titulo_completo[len("Destaque"):].strip()
 
-                # Remove "Por Fulano + data", mantendo só o título
                 titulo  = titulo_completo.split("Por")[0].strip()
                 href = link['href']
                 if "FURIA" in titulo.upper() and "/noticia/" in href:
