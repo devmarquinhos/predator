@@ -45,6 +45,8 @@ Na raiz do projeto (onde está `bot.py`), crie um arquivo chamado `.env` com o s
 ```env
 TELEGRAM_TOKEN=seu_token_do_bot_telegram
 PANDASCORE_TOKEN=seu_token_do_pandascore
+TWITCH_CLIENT_ID=seu_client_id
+TWITCH_OAUTH_TOKEN=seu_oauth_token
 ```
 
 > 🔐 **Atenção:** nunca compartilhe seus tokens publicamente.
