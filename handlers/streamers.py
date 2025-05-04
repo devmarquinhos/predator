@@ -8,8 +8,8 @@ TWITCH_ACCESS_TOKEN = os.getenv("TWITCH_ACCESS_TOKEN")
 TWITCH_API_URL = "https://api.twitch.tv/helix/streams"
 
 STREAMERS = {
-    "Xarola": "xarola",
-    "Otsuka": "otsukacs"
+    "Xarola": "xarola_",
+    "Otsuka": "otsukaxd"
 }
 
 def get_streamer_status(username):
