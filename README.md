@@ -89,6 +89,7 @@ furia-fan-chat/
 │   ├── noticias.py
 │   ├── aovivo.py
 │   ├── streamers.py
+│   ├── loja.py
 ```
 
 ---
