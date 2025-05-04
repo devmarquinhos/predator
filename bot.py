@@ -45,7 +45,7 @@ def main():
             listen="0.0.0.0",
             port=port,
             url_path=TELEGRAM_TOKEN,
-            webhook_url=f"{external_url}{TELEGRAM_TOKEN}"
+            webhook_url=f"{external_url.rstrip('/')}/{TELEGRAM_TOKEN}"
         )
     else:
         logger.info("Executando localmente com polling.")
