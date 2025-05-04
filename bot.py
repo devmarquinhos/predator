@@ -1,4 +1,5 @@
 import logging
+import os
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
 from config import TELEGRAM_TOKEN
 from handlers.jogos import proximos_jogos, ultimos_jogos
@@ -34,7 +35,21 @@ def main():
     app.add_handler(CallbackQueryHandler(streamers, pattern="streamers"))
 
     logger.info("Bot da FURIA está online! 🔥")
-    app.run_polling()
+    # Detecta se estamos no Render ou em ambiente local
+    external_url = os.environ.get("RENDER_EXTERNAL_URL")
+    port = int(os.environ.get("PORT", 8443))  # Padrão 8443 se não definido
+
+    if external_url:
+        logger.info("Executando via webhook.")
+        app.run_webhook(
+            listen="0.0.0.0",
+            port=port,
+            url_path=TELEGRAM_TOKEN,
+            webhook_url=f"{external_url}{TELEGRAM_TOKEN}"
+        )
+    else:
+        logger.info("Executando localmente com polling.")
+        app.run_polling()
 
 if __name__ == "__main__":
     main()
